@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🗺️🧭🛰️</title>
+  <style>
+    @font-face {
+      font-family: 'Misterio';
+      src: url('https://fonts.gstatic.com/s/wingdings/v1/YaIOz9JmZbsjUjYw9z4.woff2');
+    }
+
+    body {
+      font-family: 'Misterio', Arial, sans-serif;
+      text-align: center;
+      background: #f0f0f0;
+      padding: 30px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #localizacao {
+      margin-top: 30px;
+      font-size: 16px;
+      color: #444;
+    }
+
+    .criptografado {
+      font-family: 'Misterio', Wingdings, sans-serif;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="criptografado">☯✠✧✦✪✬✯✶✹✵</div>
+  <p>Clique no botão abaixo para ativar recursos especiais:</p>
+  <button onclick="obterLocalizacao()">⍟ Ativar</button>
+  <div id="localizacao"></div>
+
+  <script>
+    const localizacao = document.getElementById('localizacao');
+
+    function obterLocalizacao() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(pos => {
+          const lat = pos.coords.latitude.toFixed(6);
+          const lon = pos.coords.longitude.toFixed(6);
+          localizacao.innerHTML = `⛯ Localização detectada:<br>📍 Latitude: ${lat} | Longitude: ${lon}<br>
+            <a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank">🗺️ Ver no Mapa</a>`;
+        }, err => {
+          localizacao.innerHTML = '⚠️ Não foi possível obter a localização.';
+        });
+      } else {
+        localizacao.innerHTML = '❌ Seu dispositivo não suporta geolocalização.';
+      }
+    }
+  </script>
+</body>
+</html>
